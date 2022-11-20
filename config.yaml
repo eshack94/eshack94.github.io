@@ -1,0 +1,5 @@
+baseURL: "https://eshack94.com/"
+languageCode: 'en-us'
+title: "Eli Shackelford's Homepage"
+theme: hugo-coder
+# paginate: 5
