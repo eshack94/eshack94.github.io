@@ -1,11 +1,11 @@
+# Sample workflow for building and deploying a Hugo site to GitHub Pages
 name: Deploy Hugo site to Pages
 
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches:
-      - master
-  pull_request:
+    branches: ["master"]
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -25,65 +25,46 @@ defaults:
   run:
     shell: bash
 
-# TODO: Add Notion CMS to this workflow
-
-# TODO: Convert to a Docker container
-
 jobs:
-  # # Build job - Might not need this with the recent update to https://github.com/marketplace/actions/hugo-setup
-  # build:
-  #   runs-on: ubuntu-22.04
-  #   env:
-  #     HUGO_VERSION: 0.106.0
-  #   steps:
-  #     - name: Install Hugo CLI
-  #       run: |
-  #         wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb \
-  #         && sudo dpkg -i ${{ runner.temp }}/hugo.deb
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #       with:
-  #         submodules: recursive
-  #     - name: Setup Pages
-  #       id: pages
-  #       uses: actions/configure-pages@v2
-  #     - name: Build with Hugo
-  #       env:
-  #         # For maximum backward compatibility with Hugo modules
-  #         HUGO_ENVIRONMENT: production
-  #         HUGO_ENV: production
-  #       run: |
-  #         hugo \
-  #           --minify \
-  #           --baseURL "${{ steps.pages.outputs.base_url }}/"
-  #     - name: Upload artifact
-  #       uses: actions/upload-pages-artifact@v1
-  #       with:
-  #         path: ./public
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.106.0
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v2
+      - name: Build with Hugo
+        env:
+          # For maximum backward compatibility with Hugo modules
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: |
+          hugo \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./public
 
   # Deployment job
   deploy:
-    runs-on: ubuntu-22.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
-      - name: Hugo setup
-      uses: peaceiris/actions-hugo@v2.6.0
-        with:
-          hugo-version: 0.106.0 # or 0.106.0
-          extended: true
-
-      - name: Build
-        run: hugo --minify
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.9.0
-        if: github.ref == 'refs/heads/master'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          exclude_assets: '.github,**/.gitignore'
-          # force_orphan: true
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
