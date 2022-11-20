@@ -1,5 +1,81 @@
 baseURL: "https://eshack94.com/"
-languageCode: 'en-us'
 title: "Eli Shackelford's Homepage"
+languageCode: 'en'
+defaultContentLanguage: en
 theme: hugo-coder
-# paginate: 5
+paginate: 20
+
+pygmentsStyle: monokai
+pygmentsCodeFences: true
+pygmentsCodeFencesGuessSyntax: true
+enableEmoji: true
+params:
+  author: Elijah Shackelford
+  description: Eli Shackelford's personal website
+  keywords: 'blog,developer,personal,devops,technology,learning'
+  info:
+    - Full Stack DevOps Engineer
+    - Tinkerer and Lifelong Learner
+  # avatarURL: images/avatar.jpg
+  gravatar: eli.shackelford@gmail.com
+  dateFormat: 'January 2, 2006'
+  # favicon_32: '/img/favicon-32x32.png'
+  # favicon_16: '/img/favicon-16x16.png'
+  since: 2022
+  commit: 'https://github.com/eshack94/eshack94-coder/tree/'
+  rtl: false
+  colorScheme: auto
+  hideColorSchemeToggle: false
+  maxSeeAlsoItems: 5
+  customCSS: []
+  customSCSS: []
+  customJS: []
+  social:
+    - name: Github
+      icon: fa fa-2x fa-github
+      weight: 1
+      url: 'https://github.com/eshack94/'
+    - name: Gitlab
+      icon: fa fa-2x fa-gitlab
+      weight: 2
+      url: 'https://gitlab.com/eshack94/'
+    - name: Twitter
+      icon: fa fa-2x fa-twitter
+      weight: 3
+      url: 'https://twitter.com/eshack94_dev/'
+    - name: LinkedIn
+      icon: fa fa-2x fa-linkedin
+      weight: 4
+      url: 'https://www.linkedin.com/in/elijah-shackelford/'
+    - name: Medium
+      icon: fa fa-2x fa-medium
+      weight: 5
+      url: 'https://medium.com/@eshackelford'
+    - name: RSS
+      icon: fa fa-2x fa-rss
+      weight: 6
+      url: 'https://eshack94.com/index.xml'
+      rel: alternate
+      type: application/rss+xml
+taxonomies:
+  category: categories
+  series: series
+  tag: tags
+  author: authors
+languages:
+  en:
+    languageName: ":us:"
+    menu:
+      main:
+        - name: About
+          weight: 1
+          url: about/
+        - name: Blog
+          weight: 2
+          url: posts/
+        - name: Projects
+          weight: 3
+          url: projects/
+        - name: Contact me
+          weight: 5
+          url: contact/
