@@ -1,9 +1,12 @@
 ---
-title: "About"
-description: "Everything you need to know about me"
-date: 2022-11-20T11:10:33-05:00
-aliases: ["about-me", "about-eli", "contact"]
-author: "Elijah Shackelford"
+aliases:
+- about-me
+- about-eli
+- contact
+author: Elijah Shackelford
+date: "2022-11-20T11:10:33-05:00"
+description: Everything you need to know about me
+title: About
 ---
 
 This is placeholder text until I have time to add a proper About page. WIP.
