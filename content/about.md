@@ -13,4 +13,4 @@ My name is Elijah Shackelford. I am currently a senior DevOps software engineer,
 
 I have a passion for learning new technologies and solving complex problems, and I am always looking for new challenges. I am a continuous learner and I am always looking for new opportunities to grow and improve my skills. Additionally, I am a strong team player committed to inter-team and intra-team collaboration to solve problems, build solutions, and drive positive business outcomes.
 
-I try to learn something new every day, and I make it a point to share what I learn with others who might find it helpful. This website is a collection of my thoughts, ideas, and experiences, and various learnings from projects I have worked on. I hope you find it useful!
+I try to learn something new every day, and I make it a point to share what I learn with others who might find it helpful. This website is a collection of my thoughts, ideas, experiences, and various learnings from projects I have worked on (both personally and professionally). I hope you find it useful!
